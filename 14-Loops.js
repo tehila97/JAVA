@@ -45,17 +45,71 @@
 // console.log (`${adding}`);
 
 
-// ex.9 -- עובד
+
+// // ex.5 -- עובד
 // const movieRating = [8.3,7.5,9.0,8.7];
+// let filterRatings = [];
+// for (let i = 0; i < movieRating.length; i++) {
+//     if (movieRating [i] > 8.0) {
+//         filterRatings.push (movieRating[i]);
+//     }
+// }
+//     console.log (filterRatings);
+
+
+// // ex.6 -- עובד
+// const movieRating = [8.3, 8.7, 9.0, 8.7, 8.3];
+// let specificRating = 8.7;
+//  let specificRatingMovie = [];
+//  for (let i=0; i<movieRating.length; i++) {
+//     if (movieRating [i] === specificRating) 
+//         {specificRatingMovie.push (movieRating);}
+//  }
+//      console.log (specificRatingMovie.length);
+
+
+// // ex.7-- עובד
+
+// const watchedList = ["Inception", "the dark knight"];
+// const wishlist = ["intersteller", "Inception"];
+// let filteredList = [];
+//     for (let i=0; i<watchedList.length; i++)
+//     {if (wishlist.includes(watchedList [i]))
+//         {
+//         filteredList.push(watchedList [i]);
+//     }}
+//     console.log (filteredList);
+
+
+// ex.8-- עובד
+//  const movieRating = [8.3, 9.0, 7.5, 8.7];
+//  const minRating = {threshold: 8.0};
+// let above = true;
+// for (let i=0; i<movieRating.length ; i++) {
+// if (movieRating[i] <= minRating.threshold) {
+//     above = false;
+//     break;
+// }
+// }
+//         console.log (above);
+
+
+// // ex.9 -- עובד
+// const movieRating = [8.3, 9.0, 7.5, 8.7];
 // let max = movieRating [0];
 // for (let i=1; i < movieRating.length; i++)
-//      {if (movieRating[i] > max) {
-//     max = movieRating[i];
-// }
-// }
-// console.log (`${max}`);
+// {if (movieRating [i] > max){
+// max = movieRating[i];}}
+// console.log (max);
 
 
+// // ex.10 
+// const movieRating = [8.3, 9.0, 7.5, 8.7];
+// let highestRatings = movieRating [0];
 
-// ex.10 -- לא הבנתי מה ההבדל משאלה 9
-//  את שאלות הבונוס לא עשיתי
+// for (let i=1; i < movieRating.length; i++) {
+//     if (movieRating [i] > highestRatings) {
+//         highestRatings = movieRating[i];
+//     }
+// }   
+//     console.log (highestRatings);
