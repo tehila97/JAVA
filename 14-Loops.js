@@ -45,36 +45,6 @@
 // console.log (`${adding}`);
 
 
-// ex.5 -- -- עובד -- לתקן
-
-// const movieRating = [8.3,7.5,9.0,8.7];
-// let filterRatings = movieRating.filter(rating => rating > 8.0);
-// console.log (`${filterRatings}`);
-
-
-// ex.6 -- -- עובד -- לתקן
-
-// const movieRating = [8.3, 8.7, 9.0, 8.7, 8.3];
-// const specificRating = 8.7;
-// const countSpecificRating = movieRating.filter(rating => rating === specificRating).length;
-// console.log(`Number of ratings equal to ${specificRating}: ${countSpecificRating}`);
-
-
-// ex.7-- עובד -- לתקן
-
-// const WatchedList = ["Incepation", "The dark knight"]
-// const wishList = ["Interstellar", "Incepation"]
-// let filteredList = wishList.filter (movie => WatchedList.includes(movie));
-// console.log(`${filteredList}`)
-
-
-// // ex.8 -- עובד -- לתקן
-// const movieRating = [8.3, 8.7, 9.0, 8.3];
-// const minRating =  { threshold: 8.0 };
-// let above = movieRating.every(rating => rating > minRating.threshold);
-// console.log(`${above}`)
-
-
 // ex.9 -- עובד
 // const movieRating = [8.3,7.5,9.0,8.7];
 // let max = movieRating [0];
@@ -85,11 +55,6 @@
 // }
 // console.log (`${max}`);
 
-
-// ex.9 -- adding
-// const movieRating = [8.3,7.5,9.0,8.7];
-// let higestRating = Math.max(...movieRating);
-// console.log(`${higestRating}`)
 
 
 // ex.10 -- לא הבנתי מה ההבדל משאלה 9
