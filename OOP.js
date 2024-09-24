@@ -72,3 +72,94 @@
 //         console.log(media.getRatings());  
 
 // 1.5
+// class Media {
+//     #title;
+//     #duration;
+//     #ratings;
+
+//     constructor (title, duration) {
+//     this.#title = title;
+//     this.#duration = duration;
+//     this.#ratings = [];
+//     }  
+
+//     addRating (rating) {
+//         this.#ratings.push(rating);
+//     }
+
+//     getRatings () {
+//         return this.#ratings;
+//     }
+
+//     #calculateAverageRatings () {
+//         if (this.#ratings.length === 0) {
+//             return "no ratings yet";
+//         }
+//         let sum = 0;
+//         for (let i = 0; i < this.#ratings.length; i ++) {
+//             sum += this.#ratings [i];
+//         }
+//         return sum / this.#ratings.length;
+//     }
+//     get averageRating () {
+//         return this.#calculateAverageRatings();
+//     }
+//     }
+
+// const media = new Media("Inception", 180);
+// media.addRating(9.0);
+// media.addRating (8.5);
+// console.log(media.getRatings()); 
+// console.log(media.averageRating); 
+
+
+// 1.6 
+
+// class Media {
+//     #title;
+//     #duration;
+//     #ratings;
+
+//     constructor (title, duration) {
+//     this.#title = title;
+//     this.#duration = duration;
+//     this.#ratings = [];
+//     }  
+
+//     addRating (rating) {
+//         this.#ratings.push(rating);
+//     }
+
+//     getRatings () {
+//         return this.#ratings;
+//     }
+
+//     #calculateAverageRatings () {
+//         if (this.#ratings.length === 0) {
+//             return "no ratings yet";
+//         }
+//         let sum = 0;
+//         for (let i = 0; i < this.#ratings.length; i ++) {
+//             sum += this.#ratings [i];
+//         }
+//         return sum / this.#ratings.length;
+//     }
+
+//     #displayDetails (){
+//         return `Title: ${this.#title},  Duration: ${this.#duration}, Avarage Rating: ${this.#calculateAverageRatings()}`;
+//     }
+
+//     get displayDetails () {
+//         return this.#displayDetails();
+//     }
+// }
+
+// const media = new Media("Inception", 180);
+// media.addRating(9.0);
+// media.addRating (8.5);
+// console.log(media.displayDetails); 
+
+
+// ex 2
+
+// 2.1
