@@ -25,32 +25,6 @@ const player2 = {
     deck: []
 };
 
-// const player1 = {
-//     cards: ['AS', '2', '3', '4', '5', '6', '7', '8','9', '10', 'prince', 'queen', 'king'],
-//     series: [Spades, hearts, diamond, clover],
-//     deck: [],
-//     addDeck (card) {
-//         this.deck.push (card)
-//     }
-// };
-
-//   const player2 = {
-//     cards: ['AS', '2', '3', '4', '5', '6', '7', '8','9', '10', 'prince', 'queen', 'king'],
-//     series: [Spades, hearts, diamond, clover],
-//     deck: [],
-//     addDeck (card) {
-//         this.deck.push (card)
-//     }
-// };
-
-
-// for (let i = 0; i<cards.length; i++ ){
-// const deck = [
-//     { cards: 'AS', series: 'Spades' },
-//     { cards: '2', series: 'Spades' },
-//     { cards: '3', series: 'Spades' },
-//     { cards: '4', series: 'Spades' },
-//   ];
   
   function dealCards (player, deck) {
     for (let i = 0; i<4; i++ ){
@@ -112,3 +86,26 @@ printHand ("player2", player2);
 console.log (`\nTop card of discard pile: ${discardPile.cards} of ${discardPile.series}`);
 
 printBoard(player1Hand, player2Hand, discardPile);
+
+const shuffleDeck = reverseShuffle (deck.slice());
+
+const discardPile = suffleDeck.pop();
+
+dealCards (player1, shuffleDeck);
+dealCards (player2, shuffleDeck);
+
+let currentPlayerIndex = Math.floor(math.rendom()*2);
+
+function calculateScore (hand) {
+  return  hand.reduce((total, card) => {
+    if (card.isFaceUp) {
+      if (card.value === 'AS') return total +1; 
+      if (card.value === '7') return total;
+      if (card.value === 'prince') return total -1;
+      if (card.value === 'queen') return total +12;
+      if (card.value === 'king') return total +13;
+      return total + parseInt(card.value);
+    }
+    return total 
+  } 
+}
