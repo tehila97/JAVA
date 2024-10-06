@@ -39,7 +39,7 @@ function removeTree(x, y) {
     gridContainer.children[(y - 1) * 29 + x].classList.remove('brown');
     gridContainer.children[(y - 1) * 29 + (x - 1)].classList.remove('green');
     gridContainer.children[(y - 1) * 29 + (x + 1)].classList.remove('green');
-    gridContainer.children[8i(y - 1) * 29 + x].classList.remove('green');
+    gridContainer.children[(y - 1) * 29 + x].classList.remove('green');
     gridContainer.children[(y - 2) * 29 + x].classList.remove('green');
 
     gridContainer.children[y * 29 + x].classList.add('sky');
@@ -84,7 +84,7 @@ gridContainer.addEventListener('click', (event) => {
             const x = index % 29;
             const y = Math.floor(index / 29);
             removeTree(x, y);
-            greenCount--; 
+            greenCount--; // Decrease count if tree is removed
         }
     } else if (shovelMode) {
         if (target.classList.contains('green')) {
@@ -97,6 +97,7 @@ gridContainer.addEventListener('click', (event) => {
     }
 });
 
+// Initial grid and tree creation
 createGrid();
 createTree(15, 8);
 
@@ -108,12 +109,17 @@ document.getElementById('reset').addEventListener('click', () => {
     greenCount = 0;
     grayCount = 0;
 
+    // Remove all elements from the grid
     while (gridContainer.firstChild) {
         gridContainer.removeChild(gridContainer.firstChild);
     }
 
+    // Create the grid again
     createGrid();
+
+    // Create the tree in the initial position
     createTree(15, 8);
     
+    // Update the score display
     document.getElementById('score').innerText = `Total score: ${score}, Gray squares: ${grayCount}, Green squares: ${greenCount}`;
 });
