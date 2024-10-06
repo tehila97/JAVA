@@ -2,53 +2,36 @@ const gridContainer = document.getElementById('grid-container');
 let axeMode = false;
 let shovelMode = false;
 let pickaxeMode = false;
-let score = 0;
 let greenCount = 0;
-let grayCount = 0; 
+let grayCount = 0;
+let darkGrayCount = 0;
 
+// פונקציה ליצירת הגריד
 function createGrid() {
     for (let row = 0; row < 12; row++) {
         for (let col = 0; col < 29; col++) {
             const div = document.createElement('div');
-
             if (row < 7) {
                 div.classList.add('sky');
             } else if (row < 9) {
                 div.classList.add('gray');
             } else {
                 div.classList.add('green');
-                greenCount++; 
+                greenCount++; // ספירת משבצות ירוקות
             }
-
             gridContainer.appendChild(div);
         }
     }
 }
 
-function createTree(x, y) {
-    gridContainer.children[y * 29 + x].classList.add('brown');
-    gridContainer.children[(y - 1) * 29 + x].classList.add('brown');
-    gridContainer.children[(y - 1) * 29 + (x - 1)].classList.add('green');
-    gridContainer.children[(y - 1) * 29 + (x + 1)].classList.add('green');
-    gridContainer.children[(y - 1) * 29 + x].classList.add('green');
-    gridContainer.children[(y - 2) * 29 + x].classList.add('green');
+// פונקציה לעדכון המלאי
+function updateInventory() {
+    document.getElementById('greenCount').innerText = greenCount;
+    document.getElementById('grayCount').innerText = grayCount;
+    document.getElementById('darkGrayCount').innerText = darkGrayCount; // הוספת ספירה לאפורות כהות
 }
 
-function removeTree(x, y) {
-    gridContainer.children[y * 29 + x].classList.remove('brown');
-    gridContainer.children[(y - 1) * 29 + x].classList.remove('brown');
-    gridContainer.children[(y - 1) * 29 + (x - 1)].classList.remove('green');
-    gridContainer.children[(y - 1) * 29 + (x + 1)].classList.remove('green');
-    gridContainer.children[(y - 1) * 29 + x].classList.remove('green');
-    gridContainer.children[(y - 2) * 29 + x].classList.remove('green');
-
-    gridContainer.children[y * 29 + x].classList.add('sky');
-    gridContainer.children[(y - 1) * 29 + x].classList.add('sky');
-    gridContainer.children[(y - 1) * 29 + (x - 1)].classList.add('sky');
-    gridContainer.children[(y - 1) * 29 + (x + 1)].classList.add('sky');
-    gridContainer.children[(y - 2) * 29 + x].classList.add('sky');
-}
-
+// ניהול לחיצות על הכלים
 document.getElementById('axe').addEventListener('click', () => {
     axeMode = true;
     shovelMode = false;
@@ -67,59 +50,44 @@ document.getElementById('pickaxe').addEventListener('click', () => {
     shovelMode = false;
 });
 
+// טיפול בלחיצות על הגריד
 gridContainer.addEventListener('click', (event) => {
     const target = event.target;
 
-    if (pickaxeMode) {
-        if (target.classList.contains('green')) {
-            target.classList.remove('green');
-            target.classList.add('dark-gray');
-            // score++;
-            // grayCount++;
-            // document.getElementById('score').innerText = `Total score: ${score}, Gray squares: ${grayCount}, Green squares: ${greenCount}`;
-        }
-    } else if (axeMode) {
-        if (target.classList.contains('brown') || target.classList.contains('green')) {
-            const index = Array.from(gridContainer.children).indexOf(target);
-            const x = index % 29;
-            const y = Math.floor(index / 29);
-            removeTree(x, y);
-            greenCount--; // Decrease count if tree is removed
-        }
-    } else if (shovelMode) {
-        if (target.classList.contains('green')) {
-            target.classList.remove('green');
-            target.classList.add('gray');
-            greenCount--;
-            grayCount++;
-            document.getElementById('score').innerText = `Total score: ${score}, Gray squares: ${grayCount}, Green squares: ${greenCount}`;
-        }
+    if (pickaxeMode && target.classList.contains('green')) {
+        target.classList.remove('green');
+        target.classList.add('dark-gray');
+        greenCount--; // הקטנת הספירה של הירוק
+        darkGrayCount++; // הגדלת הספירה של האפור כהה
+        updateInventory(); // עדכון המלאי
+    } else if (shovelMode && target.classList.contains('green')) {
+        target.classList.remove('green');
+        target.classList.add('gray');
+        greenCount--; // הקטנת הספירה של הירוק
+        grayCount++; // הגדלת הספירה של האפור
+        updateInventory(); // עדכון המלאי
     }
 });
 
-// Initial grid and tree creation
-createGrid();
-createTree(15, 8);
-
+// טיפול בלחיצה על כפתור הריסט
 document.getElementById('reset').addEventListener('click', () => {
     axeMode = false;
     shovelMode = false;
     pickaxeMode = false;
-    score = 0;
     greenCount = 0;
     grayCount = 0;
+    darkGrayCount = 0; // אפס את הספירה של האפור כהה
 
-    // Remove all elements from the grid
     while (gridContainer.firstChild) {
         gridContainer.removeChild(gridContainer.firstChild);
     }
 
-    // Create the grid again
     createGrid();
-
-    // Create the tree in the initial position
-    createTree(15, 8);
-    
-    // Update the score display
-    document.getElementById('score').innerText = `Total score: ${score}, Gray squares: ${grayCount}, Green squares: ${greenCount}`;
+    updateInventory(); // עדכון המלאי בתחילה
 });
+
+// יצירת הגריד
+createGrid();
+updateInventory(); // עדכון המלאי בתחילה
+
+
