@@ -1,7 +1,7 @@
 body {
     margin: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 100vh;
     background-color: #f0f0f0; 
@@ -17,13 +17,9 @@ body {
 
 #tools {
     display: flex; 
-    justify-content:center; 
+    justify-content: center; 
     gap: 10px; 
-    position: absolute; 
-    top: 50px; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    /* z-index: 1;  */
+    margin-top: 20px; 
 }
 
 button {
@@ -35,20 +31,16 @@ button {
     background-color: #87CEEB; 
 }
 
-.gray {
-    background-color: #A9A9A9; 
+.grass {
+    background-color: #32CD32; /* Grass color */
 }
 
-.green {
-    background-color: #32CD32; 
+.ground {
+    background-color: #8B4513; /* Brown for ground */
 }
 
-.brown {
-    background-color: #8B4513; 
-}
-
-.dark-gray {
-    background-color: #696969; 
+.dirt {
+    background-color: #A9A9A9; /* Gray for dirt */
 }
 
 #inventory {
@@ -56,4 +48,3 @@ button {
     display: flex;
     justify-content: space-around;
 }
-
