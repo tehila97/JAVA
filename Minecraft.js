@@ -2,21 +2,25 @@ const gridContainer = document.getElementById('grid-container');
 let axeMode = false;
 let shovelMode = false;
 let pickaxeMode = false;
-let greenCount = 0;
-let grayCount = 0;
-let darkGrayCount = 0;
+let grassCount = 0; // ספירת דשא
+let groundCount = 0; // ספירת קרקע
+let dirtCount = 0; // ספירת Dirt
 
 function createGrid() {
     for (let row = 0; row < 12; row++) {
         for (let col = 0; col < 29; col++) {
             const div = document.createElement('div');
             if (row < 7) {
-                div.classList.add('sky');
-            } else if (row < 9) {
-                div.classList.add('gray');
+                div.classList.add('sky'); // צבע השמים
+            } else if (row === 7) {
+                div.classList.add('grass'); // צבע דשא
+                grassCount++; // ספירה לדשא
+            } else if (row < 11) {
+                div.classList.add('ground'); // צבע קרקע
+                groundCount++; // ספירה לקרקע
             } else {
-                div.classList.add('green');
-                greenCount++;
+                div.classList.add('dirt'); // צבע Dirt (אפור)
+                dirtCount++; // ספירה ל-Dirt
             }
             gridContainer.appendChild(div);
         }
@@ -24,9 +28,9 @@ function createGrid() {
 }
 
 function updateInventory() {
-    document.getElementById('greenCount').innerText = greenCount;
-    document.getElementById('grayCount').innerText = grayCount;
-    document.getElementById('darkGrayCount').innerText = darkGrayCount;
+    document.getElementById('grassCount').innerText = grassCount; // עדכון ספירת דשא
+    document.getElementById('groundCount').innerText = groundCount; // עדכון ספירת קרקע
+    document.getElementById('dirtCount').innerText = dirtCount; // עדכון ספירת Dirt
 }
 
 document.getElementById('axe').addEventListener('click', () => {
@@ -50,17 +54,21 @@ document.getElementById('pickaxe').addEventListener('click', () => {
 gridContainer.addEventListener('click', (event) => {
     const target = event.target;
 
-    if (pickaxeMode && target.classList.contains('green')) {
-        target.classList.remove('green');
-        target.classList.add('dark-gray');
-        greenCount--;
-        darkGrayCount++;
+    if (pickaxeMode && (target.classList.contains('ground') || target.classList.contains('grass'))) {
+        // הפוך Ground או Grass ל-Sky
+        if (target.classList.contains('ground')) {
+            groundCount--; // הפחתה מהספירה
+        } else if (target.classList.contains('grass')) {
+            grassCount--; // הפחתה מהספירה
+        }
+        target.classList.remove('ground', 'grass');
+        target.classList.add('sky'); // שינוי לצבע שמיים
+        dirtCount++; // הוספה לספירת Dirt
         updateInventory();
-    } else if (shovelMode && target.classList.contains('green')) {
-        target.classList.remove('green');
-        target.classList.add('gray');
-        greenCount--;
-        grayCount++;
+    } else if (shovelMode && target.classList.contains('dirt')) {
+        target.classList.remove('dirt');
+        target.classList.add('sky'); // שינוי Dirt לשמיים
+        dirtCount--; // הפחתה מהספירה
         updateInventory();
     }
 });
@@ -69,9 +77,9 @@ document.getElementById('reset').addEventListener('click', () => {
     axeMode = false;
     shovelMode = false;
     pickaxeMode = false;
-    greenCount = 0;
-    grayCount = 0;
-    darkGrayCount = 0;
+    grassCount = 0;
+    groundCount = 0;
+    dirtCount = 0; // איפוס ספירת Dirt
 
     while (gridContainer.firstChild) {
         gridContainer.removeChild(gridContainer.firstChild);
