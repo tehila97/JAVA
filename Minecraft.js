@@ -62,6 +62,14 @@ document.getElementById('inventory').addEventListener('click', (event) => {
     }
 });
 
+
+
+
+
+
+
+
+
 // הנחת בלוק על הגריד
 gridContainer.addEventListener('click', (event) => {
     const target = event.target;
@@ -79,13 +87,6 @@ gridContainer.addEventListener('click', (event) => {
         }
         updateInventory(); 
     }
-
-
-
-
-
-
-    
 
     // הסרת משבצות קודמות
     if (pickaxeMode && (target.classList.contains('ground') || target.classList.contains('grass'))) {
